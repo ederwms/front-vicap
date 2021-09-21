@@ -1,12 +1,9 @@
 import { createStore } from 'vuex'
 
+import TranscriptionModule from './modules/transcriptions'
+
 export default createStore({
-  state: {
-  },
-  mutations: {
-  },
-  actions: {
-  },
   modules: {
+    transcription: TranscriptionModule
   }
 })

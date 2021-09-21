@@ -1,0 +1,26 @@
+div.sg-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32px;
+
+  height: 46px;
+  background-color: $neutral;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+
+  div.sg-header__brand {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+    svg.brand__icon {
+      margin-right: 8px;
+    }
+
+    h4.brand__title {
+      color: $secondary;
+    }
+  }
+}
