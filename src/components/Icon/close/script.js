@@ -1,5 +1,5 @@
 export default {
-  name: 'VideoSubtitle',
+  name: 'CloseIcon',
   props: {
     size: {
       type: [Number, String],

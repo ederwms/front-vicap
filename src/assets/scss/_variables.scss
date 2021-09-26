@@ -1,53 +1,70 @@
-// /* SCSS HEX */
-$primary: #e63946ff;
-$primary-lighten-1: lighten($primary, 10%);
-$secondary: #2c3b48ff;
-$neutral: #f8f9faff;
-$powderblue: #a8dadcff;
-$celadonblue: #457b9dff;
+// Defaults
+$borderRadius: 8px;
+$buttonBorderRadius: 4px;
+$transition: all 0.3s ease;
+
+// -----------------------------------------------------------------------
+
+// Colors
+
+/* Primeira opção de cores */
+// $primary: #ee6c4d;
+// $background: #313439;
+// $contrast: #292a2e;
+// $accent: #444;
+
+/* Segunda opção de cores */
+// $background: #1e1d2b;
+// $contrast: #252736;
+// $accent: #2d2e40;
+
+/* Terceira opção de cores (fica bão, digassi de passagi) */
+// $primary: #5F3CFF;
+// $background: #232323;
+// $contrast: #2f2f2f;
+// $accent: #444;
+
+/* Quarta opção de cores */
+$primary: #CC966C;
+$background: #1A1D20;
+$contrast: #2f2f2f;
+$accent: #444646;
+
+// -----------------------------------------------------------------------
+
+$text: #f7f7f8;
+$secondaryText: #696c70;
+$positiveText: #219f64;
+$negativeText: #b44c46;
+$neutralText: #ffe925;
+
+// Font Sizes
+$fontSize12: 0.75rem;
+$fontSize14: 0.857rem;
+$fontSize15: 0.938rem;
+$fontSize16: 1rem;
+$fontSize18: 1.125rem;
+$fontSize20: 1.25rem;
+$fontSize24: 1.5rem;
+
+// -----------------------------------------------------------------------
 
 :export {
+  background: $background;
+  contrast: $contrast;
+  accent: $accent;
   primary: $primary;
-  primary-lighten-1: $primary-lighten-1;
-  secondary: $secondary;
-  neutral: $neutral;
-  powderblue: $powderblue;
-  celadonblue: $celadonblue;
+  text: $text;
+  secondary-text: $secondaryText;
+  positive-text: $positiveText;
+  negative-text: $negativeText;
+  neutral-text: $neutralText;
+  transition: $transition;
+  font-size-12: $fontSize12;
+  font-size-14: $fontSize14;
+  font-size-15: $fontSize15;
+  font-size-16: $fontSize16;
+  font-size-18: $fontSize18;
+  font-size-20: $fontSize20;
+  font-size-24: $fontSize24;
 }
-
-/* SCSS Gradient */
-$gradient-top: linear-gradient(0deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-right: linear-gradient(90deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-bottom: linear-gradient(180deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-left: linear-gradient(270deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-top-right: linear-gradient(45deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-bottom-right: linear-gradient(135deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-top-left: linear-gradient(225deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-bottom-left: linear-gradient(315deg, #e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-$gradient-radial: radial-gradient(#e63946ff, #2c3b48ff, #f1faeeff, #a8dadcff, #457b9dff);
-
-/* SCSS HEX */
-// $primary: #ee6c4dff;
-// $secondary: #293241ff;
-// $background: #e2eef3ff;
-// $bdazzled-blue: #3d5a80ff;
-// $light-cyan: #e0fbfcff;
-
-// :export {
-//   primary: $primary;
-//   secondary: $secondary;
-//   background: $background;
-//   bdazzled-blue: $bdazzled-blue;
-//   light-cyan: $light-cyan;
-// }
-
-// /* SCSS Gradient */
-// $gradient-top: linear-gradient(0deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-right: linear-gradient(90deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-bottom: linear-gradient(180deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-left: linear-gradient(270deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-top-right: linear-gradient(45deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-bottom-right: linear-gradient(135deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-top-left: linear-gradient(225deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-bottom-left: linear-gradient(315deg, #ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);
-// $gradient-radial: radial-gradient(#ee6c4dff, #293241ff, #e2eef3ff, #3d5a80ff, #e0fbfcff);

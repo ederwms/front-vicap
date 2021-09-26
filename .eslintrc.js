@@ -16,10 +16,7 @@ module.exports = {
       process.env.NODE_ENV === 'production'
         ? ['error', { allow: ['warn', 'error'] }]
         : 'off',
-    'no-debugger':
-      process.env.NODE_ENV === 'production'
-        ? 'error'
-        : 'off',
+    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'vue/no-v-html': 0,
     'vue/no-parsing-error': [
       'error',
@@ -48,19 +45,13 @@ module.exports = {
     'no-multi-spaces': 'error',
     'no-loop-func': 'error',
     'no-undefined': 0,
-    'no-use-before-define': [
-      'error',
-      { functions: true, classes: true }
-    ],
+    'no-use-before-define': ['error', { functions: true, classes: true }],
     'array-bracket-spacing': ['error', 'never'],
     'array-element-newline': ['error', 'consistent'],
     'block-spacing': 'error',
     'brace-style': ['error', '1tbs'],
     'no-multi-assign': 0,
-    'comma-spacing': [
-      'error',
-      { before: false, after: true }
-    ],
+    'comma-spacing': ['error', { before: false, after: true }],
     'comma-style': ['error', 'last'],
     'computed-property-spacing': ['error', 'never'],
     indent: [
@@ -79,8 +70,7 @@ module.exports = {
     'vue/multiline-html-element-content-newline': 2,
     'vue/html-closing-bracket-spacing': 2,
     'vue/html-closing-bracket-newline': 'error',
-    'vue/no-spaces-around-equal-signs-in-attribute':
-      'error',
+    'vue/no-spaces-around-equal-signs-in-attribute': 'error',
     'vue/no-multi-spaces': 'error',
     'vue/no-shared-component-data': 'error',
     'vue/require-valid-default-prop': 'error',
@@ -118,17 +108,14 @@ module.exports = {
     'vue/max-attributes-per-line': [
       'error',
       {
-        singleline: 20,
+        singleline: 2,
         multiline: {
           max: 1,
           allowFirstLine: false
         }
       }
     ],
-    'vue/mustache-interpolation-spacing': [
-      'error',
-      'always'
-    ],
+    'vue/mustache-interpolation-spacing': ['error', 'always'],
     'vue/name-property-casing': ['error', 'PascalCase'],
     'vue/no-template-shadow': 'error',
     'vue/require-default-prop': 'error',

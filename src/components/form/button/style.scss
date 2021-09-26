@@ -1,0 +1,20 @@
+button.sg-button {
+  padding: 8px;
+  border-radius: $buttonBorderRadius;
+  color: $text;
+  font-weight: bold;
+  background: $primary;
+  border: 1px solid $primary;
+  cursor: pointer;
+
+  &.sg-button--icon {
+    border: none;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+  }
+
+  &.sg-button--block {
+    width: 100%;
+  }
+}

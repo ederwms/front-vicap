@@ -1,0 +1,76 @@
+.sg-modal-fade-enter-active, .sg-modal-fade-leave-active {
+  transition: $transition;
+}
+
+.sg-modal-fade-enter-from, .sg-modal-fade-leave-to {
+  opacity: 0;
+}
+
+.sg-modal-fade-leave-from, .sg-modal-fade-enter-to {
+  opacity: 1;
+}
+
+div.sg-modal__backdrop {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  div.sg-modal {
+    display: flex;
+    flex-direction: column;
+    background: $accent;
+    z-index: 999999999999;
+
+    border-radius: 4px;
+    overflow-x: auto;
+    box-shadow: 2px 2px 20px 1px rgba(0, 0, 0, 0.3);
+
+    header.sg-modal__header, footer.sg-modal__footer {
+      padding: 15px;
+      display: flex;
+    }
+
+    header.sg-modal__header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      border-bottom: 1px solid $contrast;
+
+      button.header__btn-close {
+        border: none;
+        cursor: pointer;
+        background: transparent;
+      }
+    }
+
+    section.sg-modal__body {
+      position: relative;
+      padding: 20px 10px;
+      height: 100%;
+      overflow-y: auto;
+    }
+
+    footer.sg-modal__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid $contrast;
+
+      button.footer__btn-close {
+        padding: 8px;
+        border-radius: 4px;
+        color: #fff;
+        background: $primary;
+        border: 1px solid $primary;
+        border-radius: 2px;
+      }
+    }
+  }
+}

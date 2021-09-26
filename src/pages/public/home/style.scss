@@ -1,3 +1,124 @@
-h1.component-title {
+div.home__container {
   width: 100%;
+  height: 100%;
+  padding: 16px 40px;
+
+  background-color: $background;
+
+  div.home__filters {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 16px;
+
+    .filters__input {
+      width: 40%;
+    }
+
+    button.filters__add-job-btn {
+      padding: 8px;
+    }
+  }
+
+  div.home__jobs-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    div.home__jobs-wrapper {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
+
+      div.job {
+        background-color: $contrast;
+        border-radius: $borderRadius;
+
+        div.job__video-thumbnail {
+          position: relative;
+          width: 100%;
+          height: 150px;
+          margin-bottom: 24px;
+
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+          border-top-left-radius: $borderRadius;
+          border-top-right-radius: $borderRadius;
+          -webkit-mask-image: -webkit-gradient(linear, left top, left bottom,
+              color-stop(0.00,  rgba(0,0,0,1)),
+              color-stop(0.35,  rgba(0,0,0,1)),
+              color-stop(0.50,  rgba(0,0,0,1)),
+              color-stop(0.65,  rgba(0,0,0,1)),
+              color-stop(0.85,  rgba(0,0,0,0.6)),
+              color-stop(1.00,  rgba(0,0,0,0)));
+        }
+
+        div.job__body {
+          padding: 16px;
+
+          div.body__header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+
+            div.header__job-status {
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              padding: 2px 8px;
+              border-radius: 20px;
+              margin-bottom: 16px;
+              font-weight: bold;
+
+              &.job-status--completed {
+                background-color: $positiveText;
+              }
+
+              &.job-status--in-progress {
+                background-color: $neutralText;
+                color: $background;
+              }
+
+              &.job-status--failed {
+                background-color: $negativeText;
+              }
+
+              span.job-status__name {
+                margin-left: 8px;
+              }
+            }
+
+            span.header__job-name {
+              text-transform: uppercase;
+              font-weight: bold;
+            }
+          }
+
+          div.body__job-date {
+            margin-top: 16px;
+
+            svg {
+              margin-right: 8px;
+            }
+
+            p {
+              display: flex;
+              justify-content: flex-start;
+              align-items: center;
+              margin-top: 4px;
+              font-size: $fontSize18;
+            }
+          }
+
+          button.body__details-btn {
+            margin-top: 24px;
+            font-size: $fontSize16;
+          }
+        }
+      }
+    }
+  }
 }
