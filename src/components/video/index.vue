@@ -1,9 +1,12 @@
 <template>
   <video
     ref="videoPlayer"
-    class="video-js"
-    :style="`width: ${width}; height: ${height}`"
+    class="video-js vjs-default-skin"
   />
 </template>
 
 <script src="./script.js" />
+
+<style lang="scss">
+  @import './style.scss';
+</style>

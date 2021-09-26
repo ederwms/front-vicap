@@ -25,16 +25,12 @@
 
     <main class="transcription-modal__body">
       <div class="body__videos">
-        <div class="videos__original-video">
+        <div class="videos__video-wrapper videos__original-video">
           <p class="original-video__title">
             Vídeo Original
           </p>
 
-          <video-js
-            :options="originalVideoOptions"
-            width="500px"
-            height="350px"
-          />
+          <video-js :options="originalVideoOptions" />
         </div>
 
         <div class="videos__subtitle-icon">
@@ -46,16 +42,12 @@
           />
         </div>
 
-        <div class="videos__subtitled-video">
+        <div class="videos__video-wrapper videos__subtitled-video">
           <p class="subtitled-video__title">
             Vídeo Legendado
           </p>
 
-          <video-js
-            :options="subtitledVideoOptions"
-            width="500px"
-            height="350px"
-          />
+          <video-js :options="subtitledVideoOptions" />
         </div>
       </div>
 

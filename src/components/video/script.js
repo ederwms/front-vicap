@@ -7,14 +7,6 @@ export default {
     options: {
       type: Object,
       default: () => ({})
-    },
-    width: {
-      type: String,
-      default: '350px'
-    },
-    height: {
-      type: String,
-      default: '200px'
     }
   },
   data() {

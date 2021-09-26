@@ -27,8 +27,7 @@ export default {
     isOpen(newValue, oldValue) {
       if (newValue) {
         this.originalVideoOptions = {
-          autoplay: false,
-          controls: true,
+          ...this.defaultVideoOptions,
           sources: [
             {
               src: this.transcriptionJob.originalVideoLink,
@@ -38,8 +37,7 @@ export default {
         }
 
         this.subtitledVideoOptions = {
-          autoplay: false,
-          controls: true,
+          ...this.defaultVideoOptions,
           sources: [
             {
               src: this.transcriptionJob.subtitledVideoLink,
@@ -58,7 +56,24 @@ export default {
       scssColors: ScssVariables,
       shouldRenderVideo: false,
       originalVideoOptions: {},
-      subtitledVideoOptions: {}
+      subtitledVideoOptions: {},
+      defaultVideoOptions: {
+        autoplay: false,
+        controls: true,
+        fluid: true,
+        responsive: true,
+        language: 'pt-BR',
+        userActions: {
+          hotkeys: {
+            fullscreenKey: (event) => {
+              return event.which === 70
+            },
+            muteKey: (event) => {
+              return event.which === 77
+            }
+          }
+        }
+      }
     }
   },
   emits: [

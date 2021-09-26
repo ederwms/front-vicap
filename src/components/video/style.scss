@@ -1,0 +1,69 @@
+$primary-foreground-color: $primary;
+$primary-background-color: #2B333F;
+
+$center-big-play-button: true;
+
+.video-js .vjs-control-bar {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.video-js {
+  font-size: $fontSize12;
+  color: $primary-foreground-color;
+}
+
+.vjs-default-skin .vjs-big-play-button {
+  font-size: 2.5em;
+
+  $big-play-width: 2em;
+  $big-play-height: 1.5em;
+
+  line-height: $big-play-height;
+  height: $big-play-height;
+  width: $big-play-width;
+
+  border: 1px solid $primary-foreground-color;
+  border-radius: $buttonBorderRadius;
+
+  left: 50%;
+  top: 50%;
+  margin-left: -($big-play-width / 2);
+  margin-top: -($big-play-height / 2);
+}
+
+.video-js .vjs-control-bar,
+.video-js .vjs-big-play-button,
+.video-js .vjs-menu-button .vjs-menu-content {
+  background-color: $primary-background-color;
+  background-color: rgba($primary-background-color, 0.9);
+}
+
+$slider-bg-color: lighten($primary-background-color, 90%);
+.video-js .vjs-slider {
+  background-color: $slider-bg-color;
+  background-color: rgba($slider-bg-color, 0.9);
+}
+
+.video-js .vjs-volume-level,
+.video-js .vjs-play-progress,
+.video-js .vjs-slider-bar {
+  background: $primary-foreground-color;
+}
+
+.video-js .vjs-load-progress {
+  background: ligthen($slider-bg-color, 80%);
+  background: rgba($slider-bg-color, 0.8);
+}
+
+.video-js .vjs-load-progress div {
+  background: ligthen($slider-bg-color, 80%);
+  background: rgba($slider-bg-color, 0.9);
+}
+
+.video-js:hover .vjs-big-play-button {
+  background-color: rgba(0,0,0,.95);
+  border-color: #CC966C;
+}
