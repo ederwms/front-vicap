@@ -1,8 +1,12 @@
 import { mapActions, mapGetters } from 'vuex'
 import { format } from 'date-fns'
+import { useToast } from 'vue-toastification'
+
+import { debounce } from '@/helpers/functions'
 
 import ScssVariables from '@/assets/scss/_variables.scss'
 
+import LoadingOverlay from '@/components/loading-overlay'
 import TranscriptionDetailsModal from '@/components/modals/transcription-details-modal'
 import NewTranscriptionModal from '@/components/modals/new-transcription-modal'
 import SGInput from '@/components/form/input'
@@ -19,10 +23,12 @@ export default {
     SgInput: SGInput,
     SgButton: SGButton,
     Icon,
-    FileUpload
+    FileUpload,
+    LoadingOverlay
   },
   data() {
     return {
+      isLoading: false,
       transcriptionDetailsModalData: {
         isOpen: false,
         job: {}
@@ -31,6 +37,7 @@ export default {
       jobsFilter: '',
       scssColors: ScssVariables,
       format,
+      toast: useToast(),
       tempJobs: [
         {
           startTime: '2021-09-24T02:04:17.904Z',
@@ -125,25 +132,27 @@ export default {
     ...mapGetters(['getterTranscriptionJobs'])
   },
   methods: {
-    ...mapActions(['actionHealthCheck', 'actionGetAllTranscriptionJobs']),
-    healthCheck() {
-      this.actionHealthCheck()
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    },
+    ...mapActions([
+      'actionHealthCheck',
+      'actionGetAllTranscriptionJobs',
+      'actionGetTranscriptionJobByName'
+    ]),
     getAllTranscriptionJobs() {
-      this.actionGetAllTranscriptionJobs()
-        .then((response) => {
-          console.log(response)
-        })
+      this.isLoading = true
+
+      this.actionGetAllTranscriptionJobs(this.jobsFilter)
         .catch((error) => {
-          console.log(error)
+          this.toast.error(error.message)
+        })
+        .finally(() => {
+          this.isLoading = false
         })
     },
+    onFilterJobs: debounce(function() {
+      // NOTE retirar o console e descomentar a request
+      console.log('Filtrar')
+      // this.getAllTranscriptionJobs()
+    }, 700),
     getIconName(status) {
       return {
         COMPLETED: 'check-icon',
@@ -159,12 +168,27 @@ export default {
       }[status]
     },
     detailJob(job) {
-      document.title = 'ViCap - Detalhes da solicitação'
+      this.isLoading = true
 
-      this.transcriptionDetailsModalData = {
-        isOpen: true,
-        job
-      }
+      this.actionGetTranscriptionJobByName(job.name)
+        .then((response) => {
+          document.title = 'ViCap - Detalhes da solicitação'
+
+          this.transcriptionDetailsModalData = {
+            isOpen: true,
+            job: {
+              ...job,
+              ...(!job.subtitledVideoLink && { subtitledVideoLink: response.subtitledVideoLink }),
+              subtitles: response.subtitles
+            }
+          }
+        })
+        .catch((error) => {
+          this.toast.error(error.message)
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     },
     closeTranscriptionDetailsModal() {
       document.title = 'ViCap - Solicitações'

@@ -6,8 +6,8 @@
       <sg-input
         v-model="jobsFilter"
         class="filters__input"
-        placeholder="solicitacao01"
-        label="Nome da solicitação"
+        placeholder="Buscar"
+        @input="onFilterJobs"
       />
 
       <sg-button class="filters__add-job-btn" @click="isNewTranscriptionModalOpen = true">
@@ -22,15 +22,6 @@
           :key="index"
           class="job"
         >
-          <!-- TODO -->
-          <!--
-            Campos para se mostrar aqui:
-            [X] Nome
-            [X] Vídeo original (frame)
-            [x] Hora de início da solicitação
-            [x] Hora de término do serviço (Se o status for FAILED, não tem essa data)
-            [+/-] Status (Se status for FAILED, mostrar razão da falha no detalhar)
-          -->
           <div class="job__video-thumbnail" :style="`background-image: url(${job.videoThumbnail});`" />
 
           <div class="job__body">
@@ -98,7 +89,7 @@
     :is-open="isNewTranscriptionModalOpen"
     width="600px"
     height="500px"
-    @onClose="isNewTranscriptionModalOpen = false"
+    @close="isNewTranscriptionModalOpen = false"
   />
 
   <transcription-details-modal
@@ -106,6 +97,8 @@
     :transcription-job="transcriptionDetailsModalData.job"
     @close="closeTranscriptionDetailsModal"
   />
+
+  <loading-overlay :is-loading-on="isLoading" />
 </template>
 
 <script src="./script.js" />

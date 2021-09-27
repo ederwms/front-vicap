@@ -1,3 +1,6 @@
+import { mapActions } from 'vuex'
+import { useToast } from 'vue-toastification'
+
 import ScssVariables from '@/assets/scss/_variables.scss'
 
 import SGModal from '@/components/modals/generic-modal'
@@ -21,17 +24,38 @@ export default {
     SgButton: SGButton,
     Icon
   },
-  emits: ['onClose'],
+  emits: ['close'],
   data() {
     return {
       scssColors: ScssVariables,
       uploadedFile: null,
-      jobName: ''
+      jobName: '',
+      toast: useToast()
     }
   },
   methods: {
+    ...mapActions(['actionCreateTranscriptionJob']),
+    createNewJob() {
+      if (this.uploadedFile.type !== 'video/mp4') {
+        this.toast.error('Tipo de arquivo inválido, por favor envie um vídeo no formato MP4.')
+      } else if (this.uploadedFile.size > (20 * 1024 * 1024)) {
+        this.toast.error('O arquivo selecionado ultrapassa o limite de tamanho, por favor selecione outro arquivo com até 20mb.')
+      } else {
+        const formData = new FormData()
+        formData.append('file', this.uploadedFile)
+        formData.append('transcriptionJobName', this.jobName)
+
+        this.actionCreateTranscriptionJob(formData)
+          .then((response) => {
+            this.toast.success(response.message)
+          })
+          .catch((error) => {
+            this.toast.error(error.message)
+          })
+      }
+    },
     close() {
-      this.$emit('onClose')
+      this.$emit('close')
     }
   }
 }

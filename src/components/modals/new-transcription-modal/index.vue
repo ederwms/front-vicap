@@ -34,7 +34,7 @@
     </main>
 
     <footer class="new-transcription-modal__footer">
-      <sg-button class="footer__send-btn">
+      <sg-button class="footer__send-btn" @click="createNewJob">
         Solicitar legendas para vídeo
       </sg-button>
     </footer>

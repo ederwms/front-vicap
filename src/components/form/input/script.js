@@ -25,7 +25,7 @@ export default {
       default: ''
     }
   },
-  emits: ['update:modelValue'],
+  emits: ['update:modelValue', 'input'],
   data() {
     return {
       isInputActive: false,
@@ -38,6 +38,10 @@ export default {
   methods: {
     focusInput() {
       this.isInputActive = true
+    },
+    emitEvents($event) {
+      this.$emit('update:modelValue', $event.target.value)
+      this.$emit('input')
     },
     blurInput() {
       if (!this.modelValue || this.modelValue === '') {

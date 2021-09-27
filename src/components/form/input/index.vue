@@ -2,6 +2,7 @@
 <template>
   <div class="sg-input">
     <label
+      v-if="label !== 'Label'"
       :for="inputRandomId"
       class="sg-input__label"
     >
@@ -15,7 +16,7 @@
       :class="{ 'sg-input--error': errorMessage !== '' }"
       :placeholder="placeholder || 'Placeholder'"
       :value="modelValue"
-      @input="$emit('update:modelValue', $event.target.value)"
+      @input="emitEvents"
       @focus="focusInput"
       @blur="blurInput"
     />
@@ -34,6 +35,6 @@
 
 <!--
   NOTE
-  No início do arquivo, desabilitei essa regra do eslint pq tava dando um problema com o prettier
+  No início do arquivo, desabilitei uma regra do eslint pq tava dando um problema com o prettier
   Dps, com tempo, arrumar uma solução melhor
 -->

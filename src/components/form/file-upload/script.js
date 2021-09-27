@@ -41,11 +41,7 @@ export default {
       return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window
     },
     validateUploadedFile(file) {
-      if (file.type !== 'video/mp4') {
-        return false
-      } else {
-        return file
-      }
+      return file
     },
     formatFileSize(bytes, decimals = 2) {
       if (!bytes) {

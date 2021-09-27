@@ -27,7 +27,6 @@ export default {
     isOpen(newValue, oldValue) {
       if (newValue) {
         this.originalVideoOptions = {
-          ...this.defaultVideoOptions,
           sources: [
             {
               src: this.transcriptionJob.originalVideoLink,
@@ -37,7 +36,6 @@ export default {
         }
 
         this.subtitledVideoOptions = {
-          ...this.defaultVideoOptions,
           sources: [
             {
               src: this.transcriptionJob.subtitledVideoLink,
@@ -56,29 +54,10 @@ export default {
       scssColors: ScssVariables,
       shouldRenderVideo: false,
       originalVideoOptions: {},
-      subtitledVideoOptions: {},
-      defaultVideoOptions: {
-        autoplay: false,
-        controls: true,
-        fluid: true,
-        responsive: true,
-        language: 'pt-BR',
-        userActions: {
-          hotkeys: {
-            fullscreenKey: (event) => {
-              return event.which === 70
-            },
-            muteKey: (event) => {
-              return event.which === 77
-            }
-          }
-        }
-      }
+      subtitledVideoOptions: {}
     }
   },
-  emits: [
-    close
-  ],
+  emits: ['close'],
   methods: {
     close() {
       this.$emit('close')
