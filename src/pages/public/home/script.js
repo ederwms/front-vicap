@@ -126,7 +126,7 @@ export default {
     document.title = 'ViCap - Solicitações'
   },
   mounted() {
-    // this.getAllTranscriptionJobs()
+    this.getAllTranscriptionJobs()
   },
   computed: {
     ...mapGetters(['getterTranscriptionJobs'])
@@ -150,8 +150,8 @@ export default {
     },
     onFilterJobs: debounce(function() {
       // NOTE retirar o console e descomentar a request
-      console.log('Filtrar')
-      // this.getAllTranscriptionJobs()
+      // console.log('Filtrar')
+      this.getAllTranscriptionJobs()
     }, 700),
     getIconName(status) {
       return {

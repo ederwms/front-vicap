@@ -18,7 +18,7 @@
     <div class="home__jobs-container">
       <div class="home__jobs-wrapper">
         <div
-          v-for="(job, index) in tempJobs"
+          v-for="(job, index) in getterTranscriptionJobs"
           :key="index"
           class="job"
         >
@@ -77,7 +77,7 @@
               block
               @click="detailJob(job)"
             >
-              Detalhar
+              Ver resultados
             </sg-button>
           </div>
         </div>

@@ -3,7 +3,7 @@
     id="file-drag-drop"
     class="file-upload"
   >
-    <div v-if="modelValue" class="uploaded-file">
+    <div v-if="hasFile" class="uploaded-file">
       <icon
         class="uploaded-file__icon"
         name="video-icon"
@@ -11,11 +11,29 @@
         :color="scssColors['text']"
       />
 
-      <span class="uploaded-file__file-info">
-        <span class="file-info__name">
-          {{ modelValue.name }}
-        </span> - {{ formatFileSize(modelValue.size) }}
-      </span>
+      <div class="uploaded-file__file-info">
+        <p>
+          <span class="file-info__name">
+            {{ uploadedFile.name }}
+          </span> - {{ formatFileSize(uploadedFile.size) }}
+
+          <icon
+            v-if="hasFinishedUploading"
+            class="file-info__check-icon"
+            name="check-icon"
+            size="22"
+            :color="scssColors['positive-text']"
+          />
+        </p>
+
+        <div v-if="!hasFinishedUploading" class="file-info__progress">
+          <progress
+            class="progress__bar"
+            :max="100"
+            :value="uploadProgress"
+          />
+        </div>
+      </div>
 
       <sg-button
         icon
@@ -35,9 +53,6 @@
       ref="fileForm"
       @drop="handleDroppedFile"
       @drag="handleDrag"
-      @dragstart="handleDragStart"
-      @dragenter="handleDragEnter"
-      @dragleave="handleDragLeave"
     >
       <div class="drop-area">
         <div class="drop-area__files">
@@ -68,6 +83,8 @@
       </div>
     </form>
   </div>
+
+  <loading-overlay :is-loading-on="isLoading" />
 </template>
 
 <script src="./script.js" />

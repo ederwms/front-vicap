@@ -1,5 +1,9 @@
 <template>
-  <sg-modal :is-open="isOpen">
+  <sg-modal
+    width="700px"
+    height="500px"
+    :is-open="isOpen"
+  >
     <header class="new-transcription-modal__header">
       <span class="header__title">
         Nova solicitação
@@ -29,7 +33,7 @@
           Arquivo
         </label>
 
-        <sg-file-upload v-model="uploadedFile" />
+        <sg-file-upload v-model="uploadedFileUrl" />
       </div>
     </main>
 
@@ -39,6 +43,8 @@
       </sg-button>
     </footer>
   </sg-modal>
+
+  <loading-overlay :is-loading-on="isLoading" />
 </template>
 
 <script src="./script.js" />

@@ -1,27 +1,42 @@
+import axios from 'axios'
+import { useToast } from 'vue-toastification'
+import Const from '@/helpers/const'
+
 import Icon from '@/components/icon'
 import SGButton from '@/components/form/button'
+import LoadingOverlay from '@/components/loading-overlay'
 
 import ScssVariables from '@/assets/scss/_variables.scss'
 
 export default {
   name: 'SGFileUpload',
+  emits: ['update:modelValue', 'uploaded'],
   props: {
     modelValue: {
       type: File,
       default: null
     }
   },
+
   components: {
     Icon,
+    LoadingOverlay,
     SgButton: SGButton
   },
-  emits: ['update:modelValue'],
+
   data() {
     return {
       scssColors: ScssVariables,
-      isDragAndDropSupported: false
+      toast: useToast(),
+      isDragAndDropSupported: false,
+      uploadProgress: 0,
+      uploadedFile: null,
+      hasFile: false,
+      hasFinishedUploading: false,
+      isLoading: false
     }
   },
+
   mounted() {
     this.isDragAndDropSupported = this.determineDragAndDropSupported()
 
@@ -34,15 +49,14 @@ export default {
       })
     }
   },
+
   methods: {
     determineDragAndDropSupported() {
       const div = document.createElement('div')
 
       return (('draggable' in div) || ('ondragstart' in div && 'ondrop' in div)) && 'FormData' in window && 'FileReader' in window
     },
-    validateUploadedFile(file) {
-      return file
-    },
+
     formatFileSize(bytes, decimals = 2) {
       if (!bytes) {
         return '0 Bytes'
@@ -56,26 +70,54 @@ export default {
 
       return `${parseFloat((bytes / Math.pow(baseSize, sizeIndex)).toFixed(decimal))}${sizes[sizeIndex]}`
     },
+
     handleDroppedFile($event) {
-      this.$emit('update:modelValue', this.validateUploadedFile($event.dataTransfer.files[0]))
+      this.uploadFile($event.dataTransfer.files[0])
     },
+
     handleUploadFile($event) {
-      this.$emit('update:modelValue', this.validateUploadedFile($event.target.files[0]))
+      this.uploadFile($event.target.files[0])
     },
+
+    uploadFile(file) {
+      if (file.type !== 'video/mp4') {
+        this.toast.error('Tipo de arquivo inválido, por favor envie um vídeo no formato MP4.')
+      } else if (file.size > (2000000 * 1024 * 1024)) {
+        this.toast.error('O arquivo selecionado ultrapassa o limite de tamanho, por favor selecione outro arquivo com até 20mb.')
+      } else {
+        const formData = new FormData()
+        formData.append('file', file)
+
+        this.hasFile = true
+        this.uploadedFile = file
+        this.isLoading = true
+
+        axios.post(Const.API_FILE, formData, {
+          onUploadProgress: (event) => {
+            this.uploadProgress = parseInt(Math.round((event.loaded * 100) / event.total))
+          }
+        })
+          .then((response) => {
+            this.$emit('update:modelValue', response.data.fileUrl)
+            this.hasFinishedUploading = true
+          })
+          .catch((error) => {
+            this.toast.error(error.response.data.error)
+          })
+          .finally(() => {
+            this.isLoading = false
+          })
+      }
+    },
+
     deleteFile() {
       this.$emit('update:modelValue', null)
+
+      this.hasFile = false
+      this.uploadedFile = null
+      this.uploadProgress = 0
+      this.hasFinishedUploading = false
+      this.isLoading = false
     }
-    // handleDragEnter(event) {
-    //   console.log('DragEnter: ', event)
-    // },
-    // handleDragLeave(event) {
-    //   console.log('DragLeave: ', event)
-    // },
-    // handleDrag(event) {
-    //   console.log('Drag: ', event)
-    // },
-    // handleDragStart(event) {
-    //   console.log('DragStart: ', event)
-    // }
   }
 }

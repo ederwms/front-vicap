@@ -15,9 +15,57 @@ div.file-upload {
     background-color: $contrast;
     border-radius: $borderRadius;
 
-    span.uploaded-file__file-info {
-      span.file-info__name {
-        font-weight: bold;
+    div.uploaded-file__file-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 0 32px;
+
+      p {
+        margin-bottom: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span.file-info__name {
+          font-weight: bold;
+        }
+
+        svg.file-info__check-icon {
+          margin-left: 8px;
+        }
+      }
+
+      div.file-info__progress {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+
+        progress.progress__bar {
+          display: block;
+          width: 80%;
+          border: 0 none;
+          background: $accent;
+          border-radius: 12px;
+          height: 14px;
+
+          &::-moz-progress-bar {
+            border-radius: 10px;
+            background: #FFF;
+          }
+
+          &::-webkit-progress-bar {
+            background: transparent;
+          }
+
+          &::-webkit-progress-value {
+            border-radius: 10px;
+            background: $positiveText;
+          }
+        }
       }
     }
   }

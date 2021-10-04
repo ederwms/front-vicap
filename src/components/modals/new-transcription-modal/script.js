@@ -8,6 +8,7 @@ import SGFileUpload from '@/components/form/file-upload'
 import SGInput from '@/components/form/input'
 import SGButton from '@/components/form/button'
 import Icon from '@/components/icon'
+import LoadingOverlay from '@/components/loading-overlay'
 
 export default {
   name: 'NewTranscriptionModal',
@@ -22,37 +23,39 @@ export default {
     SgFileUpload: SGFileUpload,
     SgInput: SGInput,
     SgButton: SGButton,
-    Icon
+    Icon,
+    LoadingOverlay
   },
   emits: ['close'],
   data() {
     return {
       scssColors: ScssVariables,
-      uploadedFile: null,
+      uploadedFileUrl: null,
       jobName: '',
-      toast: useToast()
+      toast: useToast(),
+      isLoading: false
     }
   },
   methods: {
     ...mapActions(['actionCreateTranscriptionJob']),
     createNewJob() {
-      if (this.uploadedFile.type !== 'video/mp4') {
-        this.toast.error('Tipo de arquivo inválido, por favor envie um vídeo no formato MP4.')
-      } else if (this.uploadedFile.size > (20 * 1024 * 1024)) {
-        this.toast.error('O arquivo selecionado ultrapassa o limite de tamanho, por favor selecione outro arquivo com até 20mb.')
-      } else {
-        const formData = new FormData()
-        formData.append('file', this.uploadedFile)
-        formData.append('transcriptionJobName', this.jobName)
-
-        this.actionCreateTranscriptionJob(formData)
-          .then((response) => {
-            this.toast.success(response.message)
-          })
-          .catch((error) => {
-            this.toast.error(error.message)
-          })
+      this.isLoading = true
+      const formData = {
+        transcriptionJobName: this.jobName,
+        videoUrl: this.uploadedFileUrl
       }
+
+      this.actionCreateTranscriptionJob(formData)
+        .then((response) => {
+          this.toast.success(response.message)
+          this.close()
+        })
+        .catch((error) => {
+          this.toast.error(error.message)
+        })
+        .finally(() => {
+          this.isLoading = false
+        })
     },
     close() {
       this.$emit('close')
