@@ -82,7 +82,7 @@ export default {
     uploadFile(file) {
       if (file.type !== 'video/mp4') {
         this.toast.error('Tipo de arquivo inválido, por favor envie um vídeo no formato MP4.')
-      } else if (file.size > (2000000 * 1024 * 1024)) {
+      } else if (file.size > (20 * 1024 * 1024)) {
         this.toast.error('O arquivo selecionado ultrapassa o limite de tamanho, por favor selecione outro arquivo com até 20mb.')
       } else {
         const formData = new FormData()
