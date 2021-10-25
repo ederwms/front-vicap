@@ -1,4 +1,4 @@
-import { mapActions } from 'vuex'
+import { mapActions, mapMutations } from 'vuex'
 import { useToast } from 'vue-toastification'
 
 import ScssVariables from '@/assets/scss/_variables.scss'
@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     ...mapActions(['actionCreateTranscriptionJob']),
+    ...mapMutations(['ADD_NEW_TRANSCRIPTION_JOB']),
     createNewJob() {
       this.isLoading = true
       const formData = {
@@ -47,6 +48,14 @@ export default {
 
       this.actionCreateTranscriptionJob(formData)
         .then((response) => {
+          this.ADD_NEW_TRANSCRIPTION_JOB({
+            startTime: response.transcriptionJobResult.TranscriptionJob.StartTime,
+            endTime: null,
+            language: null,
+            name: response.transcriptionJobResult.TranscriptionJob.TranscriptionJobName,
+            status: response.transcriptionJobResult.TranscriptionJob.TranscriptionJobStatus,
+            originalVideoLink: response.transcriptionJobResult.TranscriptionJob.Media.MediaFileUri
+          })
           this.toast.success(response.message)
           this.close()
         })
@@ -59,6 +68,10 @@ export default {
     },
     close() {
       this.$emit('close')
+
+      this.uploadedFileUrl = null
+      this.jobName = ''
+      this.isLoading = false
     }
   }
 }

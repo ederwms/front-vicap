@@ -68,7 +68,7 @@
                   :color="scssColors['text']"
                 />
 
-                {{ format(new Date(job.endTime), 'Pp') }}
+                {{ job.endTime ? format(new Date(job.endTime), 'Pp') : '-' }}
               </p>
             </div>
 
