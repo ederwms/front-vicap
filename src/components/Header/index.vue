@@ -1,13 +1,11 @@
 <template>
-  <div class="sg-header">
+  <header class="sg-header">
     <div class="sg-header__brand">
       <icon
         class="brand__icon"
-        name="video-subtitle"
+        name="video-subtitle-icon"
         :color="scssColors.secondary"
-        :secondary-color="
-          scssColors.primary
-        "
+        :secondary-color="scssColors.primary"
         :size="30"
       />
 
@@ -15,7 +13,7 @@
         Gerador de Legendas Online
       </h4>
     </div>
-  </div>
+  </header>
 </template>
 
 <script src="./script.js" />

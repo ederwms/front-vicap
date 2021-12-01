@@ -1,6 +1,6 @@
 import ScssVariables from '@/assets/scss/_variables.scss'
 
-import Icon from '@/components/Icon'
+import Icon from '@/components/icon'
 
 export default {
   name: 'SGHeader',

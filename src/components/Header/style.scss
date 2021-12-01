@@ -1,13 +1,16 @@
-div.sg-header {
+header.sg-header {
+  // position: sticky;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0 32px;
-
-  height: 46px;
-  background-color: $neutral;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
-    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  width: 100%;
+  height: 56px;
+  z-index: 1;
+  background-color: $contrast;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 
   div.sg-header__brand {
     display: flex;
@@ -20,7 +23,7 @@ div.sg-header {
     }
 
     h4.brand__title {
-      color: $secondary;
+      color: $text;
     }
   }
 }

@@ -1,0 +1,60 @@
+header.transcription-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 32px;
+
+  span.header__title {
+    font-size: $fontSize20;
+
+    span.title__job-name {
+      font-weight: bold;
+    }
+  }
+}
+
+main.transcription-modal__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  padding: 24px 32px;
+  width: 100%;
+  height: 100%;
+
+  div.body__videos {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    width: 100%;
+
+    div.videos__video-wrapper {
+      width: 100%;
+      height: 100%;
+    }
+
+    p {
+      text-align: center;
+      width: 100%;
+      margin-bottom: 8px;
+      font-size: $fontSize24;
+      font-weight: bold;
+    }
+
+    div.videos__subtitle-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      margin: 0 40px;
+    }
+  }
+
+  button.body__download-btn {
+    margin-top: 16px;
+    font-size: $fontSize16;
+    font-weight: bold;
+  }
+}

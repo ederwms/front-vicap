@@ -1,0 +1,41 @@
+div.sg-input {
+  width: 100%;
+
+  label.sg-input__label {
+    display: block;
+    width: 100%;
+    color: $text;
+    font-size: $fontSize16;
+    transition: $transition;
+    padding-left: 4px;
+    cursor: text;
+    margin-bottom: 4px;
+  }
+
+  input.sg-input__field {
+    color: $text;
+    font-size: $fontSize16;
+    margin: 0 !important;
+    height: 45px;
+    padding: 0 16px;
+    border-radius: $borderRadius;
+    background-color: $contrast;
+    border: none;
+    width: 100%;
+    display: block;
+    transition: $transition;
+
+    &.sg-input--error {
+      border: 1px solid $negativeText;
+      box-shadow: 0 0 2px 1px $negativeText;
+    }
+  }
+
+  div.sg-input__error-message {
+    font-size: $fontSize14;
+    padding-left: 8px;
+    margin-top: 8px;
+    font-weight: bold;
+    color: $negativeText;
+  }
+}

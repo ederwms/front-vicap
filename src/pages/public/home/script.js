@@ -1,15 +1,43 @@
 import { mapActions, mapGetters } from 'vuex'
+import { format } from 'date-fns'
+import { useToast } from 'vue-toastification'
 
-import SGHeader from '@/components/Header'
+import { debounce } from '@/helpers/functions'
+
+import ScssVariables from '@/assets/scss/_variables.scss'
+
+import LoadingOverlay from '@/components/loading-overlay'
+import TranscriptionDetailsModal from '@/components/modals/transcription-details-modal'
+import NewTranscriptionModal from '@/components/modals/new-transcription-modal'
+import SGInput from '@/components/form/input'
+import SGButton from '@/components/form/button'
+import Icon from '@/components/icon'
+
+import FileUpload from '@/components/form/file-upload'
 
 export default {
   name: 'HomePage',
   components: {
-    SgHeader: SGHeader
+    TranscriptionDetailsModal,
+    NewTranscriptionModal,
+    SgInput: SGInput,
+    SgButton: SGButton,
+    Icon,
+    FileUpload,
+    LoadingOverlay
   },
   data() {
     return {
-      initialData: 'Home Page'
+      isLoading: false,
+      transcriptionDetailsModalData: {
+        isOpen: false,
+        job: {}
+      },
+      isNewTranscriptionModalOpen: false,
+      jobsFilter: '',
+      scssColors: ScssVariables,
+      format,
+      toast: useToast()
     }
   },
   created() {
@@ -24,25 +52,69 @@ export default {
   methods: {
     ...mapActions([
       'actionHealthCheck',
-      'actionGetAllTranscriptionJobs'
+      'actionGetAllTranscriptionJobs',
+      'actionGetTranscriptionJobByName'
     ]),
-    healthCheck() {
-      this.actionHealthCheck()
-        .then((response) => {
-          console.log(response)
-        })
+    getAllTranscriptionJobs() {
+      this.isLoading = true
+
+      this.actionGetAllTranscriptionJobs(this.jobsFilter)
         .catch((error) => {
-          console.log(error)
+          this.toast.error(error.message)
+        })
+        .finally(() => {
+          this.isLoading = false
         })
     },
-    getAllTranscriptionJobs() {
-      this.actionGetAllTranscriptionJobs()
+    onFilterJobs: debounce(function() {
+      // NOTE retirar o console e descomentar a request
+      // console.log('Filtrar')
+      this.getAllTranscriptionJobs()
+    }, 700),
+    getIconName(status) {
+      return {
+        COMPLETED: 'check-icon',
+        IN_PROGRESS: 'in-progress-icon',
+        FAILED: 'alert-icon'
+      }[status]
+    },
+    getStatusName(status) {
+      return {
+        COMPLETED: 'Finalizado',
+        IN_PROGRESS: 'Em progresso',
+        FAILED: 'Falha'
+      }[status]
+    },
+    detailJob(job) {
+      this.isLoading = true
+
+      this.actionGetTranscriptionJobByName(job.name)
         .then((response) => {
-          console.log(response)
+          document.title = 'ViCap - Detalhes da solicitação'
+
+          this.transcriptionDetailsModalData = {
+            isOpen: true,
+            job: {
+              ...job,
+              ...(!job.subtitledVideoLink && { subtitledVideoLink: response.subtitledVideoLink }),
+              subtitles: response.subtitles
+            }
+          }
         })
         .catch((error) => {
-          console.log(error)
+          this.toast.error(error.message)
         })
+        .finally(() => {
+          this.isLoading = false
+        })
+    },
+    closeTranscriptionDetailsModal() {
+      document.title = 'ViCap - Solicitações'
+
+      this.transcriptionDetailsModalData = {
+        isOpen: false,
+        job: {}
+      }
     }
   }
 }

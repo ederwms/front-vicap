@@ -1,0 +1,57 @@
+header.new-transcription-modal__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+  background-color: $accent;
+
+  span.header__title {
+    font-size: $fontSize20;
+
+    span.title__job-name {
+      font-weight: bold;
+    }
+  }
+}
+
+main.new-transcription-modal__body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: $accent;
+
+  padding: 16px 24px;
+  width: 100%;
+  height: 100%;
+
+  div.body__file-upload-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    width: 100%;
+    margin-top: 8px;
+
+    label.file-upload__label {
+      width: 100%;
+      padding-left: 4px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+footer.new-transcription-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  background-color: $accent;
+
+  width: 100%;
+  padding: 16px 24px;
+
+  button.footer__send-btn {
+    font-size: $fontSize15;
+  }
+}
