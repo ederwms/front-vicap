@@ -1,34 +1,19 @@
-# front-vicap
+<p align="center">
+  <img alt="Logo - ViCap" height="200" width="250" src="src/assets/icon/favicon/icon.png">
+</p>
 
-## Project setup
-```
-yarn install
-```
+# Video Captions - ViCap
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+Trabalho de conclusão de Curso Sistemas de Informação - UNIPAM. Este projeto foi desenvolvido com a finalidade de auxiliar pessoas com deficiência auditiva. Através da aplicação é possivel, a partir do upload de um vídeo, gerar uma solicitação de legenda e, assim que a solicitação for finalizada, obter legendas para o mesmo bem como gerar um vídeo legendado e fazer o download do mesmo. A aplicação permite geração de legendas para qualquer idioma.
 
-### Compiles and minifies for production
-```
-yarn build
-```
+### Screenshots
 
-### Run your unit tests
-```
-yarn test:unit
-```
+<img alt="New Transcription Job Interface" src="src/assets/screenshots/nova-solicitacao.png">
+<img alt="Transcription Job List" src="src/assets/screenshots/listagem-status.png">
+<img alt="Transcription Job List (Finished)" src="src/assets/screenshots/listagem-solicitacoes.png">
+<img alt="Transcription Job Result" src="src/assets/screenshots/resultado-solicitacao.png">
 
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
+### Licença
+[MIT](https://github.com/ederwms/front-vicap/blob/main/LICENSE)
 
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Desenvolvido por [Éder Sousa](https://github.com/ederwms)
