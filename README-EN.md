@@ -20,7 +20,7 @@ Final paper for the Information Systems Course - UNIPAM. This project was develo
 <img alt="Transcription Job List (Finished)" src="src/assets/screenshots/listagem-solicitacoes.png">
 <img alt="Transcription Job Result" src="src/assets/screenshots/resultado-solicitacao.png">
 
-### Licença
+### License
 [MIT](https://github.com/ederwms/front-vicap/blob/main/LICENSE)
 
 Developed by [Éder Sousa](https://github.com/ederwms)
